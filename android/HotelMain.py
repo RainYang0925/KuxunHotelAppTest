@@ -33,6 +33,18 @@ class HotelMainTest(unittest.TestCase):
         time.sleep(2)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectCityActivity', 'The activity name is wrong')
 
+    #Test the hotCity click
+    def test_click_hot_city(self):
+        self.buttonList = getElement.get_buttonList(self.driver)
+        for i in range(len(self.buttonList)):
+            if u'上海' in self.buttonList[i].text:
+                self.buttonList[i].click
+                break
+        time.sleep(2)
+        self.buttonList = getElement.get_buttonList(self.driver)
+        self.assertEqual(self.buttonList[4].text, u'上海', 'The city is not right')
+
+
     #Test the hotel city select
     '''
     def test_hot_city_select(self):

@@ -13,5 +13,5 @@ def get_buttonList(driver):
     return buttonList
 
 def get_search_city_result(driver):
-    searchCityResult = driver.find_elements_by_xpath('//android.widget.EditText')
+    searchCityResult = driver.find_element_by_xpath('//android.widget.EditText')
     return searchCityResult
