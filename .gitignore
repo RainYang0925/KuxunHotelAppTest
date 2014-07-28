@@ -18,10 +18,12 @@ lib64/
 parts/
 sdist/
 var/
+Test/
 *.egg-info/
 .installed.cfg
 *.egg
 *.pyc
+*.idea/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
