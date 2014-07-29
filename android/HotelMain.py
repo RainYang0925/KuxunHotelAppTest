@@ -54,6 +54,8 @@ class HotelMainTest(unittest.TestCase):
     #Test the date button
     def testcase_4_selectDate(self):
         self.buttonListMain[5].click()
+        time.sleep(2)
+        self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectDateActivity', 'The activity is wrong')
 
 
 
