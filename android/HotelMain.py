@@ -22,31 +22,35 @@ class HotelMainTest(unittest.TestCase):
         self.driver.quit()
 
     #Test the app startup normal
-    def test_start_normal(self):
+    def testcase_1_startNormal(self):
         self.textViewList = getElement.get_textViewList(self.driver)
         self.assertEqual(self.textViewList[0].text, u'酷讯酒店', 'The app title is wrong')
 
     #Test the selectCity button
-    def test_choose_city(self):
+    def testcase_2_chooseCity(self):
         self.buttonList = getElement.get_buttonList(self.driver)
         self.buttonList[4].click()
         time.sleep(2)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectCityActivity', 'The activity name is wrong')
 
+    '''
     #Test the hotCity click
     def test_click_hot_city(self):
-        self.buttonList = getElement.get_buttonList(self.driver)
-        for i in range(len(self.buttonList)):
-            if u'上海' in self.buttonList[i].text:
-                self.buttonList[i].click
+        self.buttonListCity = getElement.get_buttonList(self.driver)
+        for i in range(len(self.buttonListCity)):
+            if u'上海' in self.buttonListCity[i].text:
+                self.buttonListCity[i].click
                 break
         time.sleep(2)
-        self.buttonList = getElement.get_buttonList(self.driver)
-        self.assertEqual(self.buttonList[4].text, u'上海', 'The city is not right')
+        self.buttonListMain = getElement.get_buttonList(self.driver)
+        for i in range(len(self.buttonListMain)):
+            print self.buttonListMain[i].text, i
+        print self.buttonListMain[4].text
+        self.assertEqual(self.buttonListMain[4].text, u'上海', 'The city is not right')
 
 
     #Test the hotel city select
-    '''
+
     def test_hot_city_select(self):
         pass
         self.searchCity = getElement.get_search_city_result(self.driver)
@@ -55,8 +59,7 @@ class HotelMainTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(HotelMainTest)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.main()
 
 
 
