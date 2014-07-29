@@ -16,7 +16,7 @@ class HotelMainTest(unittest.TestCase):
         desired_caps['appActivity'] = 'com.kuxun.hotel.HotelMainActivity'
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-        time.sleep(30)
+        time.sleep(2)
 
         self.buttonListMain = getElement.get_buttonList(self.driver)
         self.textViewListMain = getElement.get_textViewList(self.driver)
@@ -40,16 +40,12 @@ class HotelMainTest(unittest.TestCase):
         self.buttonListMain[4].click()
         time.sleep(2)
         self.buttonListCity = getElement.get_buttonList(self.driver)
-        for i in range(len(self.buttonListCity)):
-            if u'上海' in self.buttonListCity[i].text:
-                self.buttonListCity[i].click()
-                break
+
+        getElement.buttonClick(u'上海', self.buttonListCity)
         time.sleep(2)
         self.buttonListMain = getElement.get_buttonList(self.driver)
-        for i in range(len(self.buttonListMain)):
-            print self.buttonListMain[i].text, i
-        print self.buttonListMain[6].text
-        self.assertEqual(self.buttonListMain[6].text, u'上海', 'The city is not right')
+
+        self.assertEqual(self.buttonListMain[4].text, u'上海', 'The city is not right')
 
     #Test the date button
     def testcase_4_selectDate(self):
@@ -57,6 +53,18 @@ class HotelMainTest(unittest.TestCase):
         time.sleep(2)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectDateActivity', 'The activity is wrong')
 
+    #Test the HotCity suggestion
+    #Use spell becase the appium Not supported the chinese characters yet
+    def testcase_5_hotCitySuggestion(self):
+        self.buttonListMain[4].click()
+        time.sleep(2)
+        self.searchArea = getElement.get_searchCityArea(self.driver)
+        self.searchArea.send_keys('bei')
+        self.suggestionCityResutlList = getElement.get_buttonList(self.driver)
+        getElement.buttonClick(u'北戴河', self.suggestionCityResutlList)
+        time.sleep(2)
+        self.buttonListMain = getElement.get_buttonList(self.driver)
+        self.assertEqual(self.buttonListMain[4].text, u'北戴河', 'The city is wrong')
 
 
 if __name__ == '__main__':
