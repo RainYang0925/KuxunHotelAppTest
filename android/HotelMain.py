@@ -89,7 +89,21 @@ class HotelMainTest(unittest.TestCase):
         pass
 
     def testcase_9_chooseStationCheck(self):
-        pass
+        self.buttonListMain[6].click()
+        time.sleep(2)
+        keywordActButtonList = getElement.get_buttonList(self.driver)
+        keywordActButtonList[-2].click()
+
+        keywordActRelativeLayoutList = getElement.get_RelativeLayoutList(self.driver)
+        for i in range(len(keywordActRelativeLayoutList)):
+            try:
+                if u'北京西站' == getElement.get_RelativeTextView(self.driver, i).text:
+                    keywordActRelativeLayoutList[i - 1].click()
+            except:
+                pass
+        time.sleep(1)
+        buttonListMainAct = getElement.get_buttonList(self.driver)
+        self.assertEqual(buttonListMainAct[6].text, u'北京西站', 'The keyword is wrong')
 
     def testcase_10_stationSuggestion(self):
         pass
