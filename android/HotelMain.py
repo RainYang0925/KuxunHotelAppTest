@@ -42,7 +42,7 @@ class HotelMainTest(unittest.TestCase):
         self.buttonListCity = getElement.get_buttonList(self.driver)
         for i in range(len(self.buttonListCity)):
             if u'上海' in self.buttonListCity[i].text:
-                self.buttonListCity[i].click
+                self.buttonListCity[i].click()
                 break
         time.sleep(2)
         self.buttonListMain = getElement.get_buttonList(self.driver)
@@ -51,14 +51,10 @@ class HotelMainTest(unittest.TestCase):
         print self.buttonListMain[6].text
         self.assertEqual(self.buttonListMain[6].text, u'上海', 'The city is not right')
 
-    '''
-    #Test the hotel city select
+    #Test the date button
+    def testcase_4_selectDate(self):
+        self.buttonListMain[5].click()
 
-    def test_hot_city_select(self):
-        pass
-        self.searchCity = getElement.get_search_city_result(self.driver)
-        self.searchCity.sendKeys(u'北')
-    '''
 
 
 if __name__ == '__main__':
