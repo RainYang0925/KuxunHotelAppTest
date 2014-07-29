@@ -39,13 +39,13 @@ class HotelMainTest(unittest.TestCase):
     def testcase_3_clickHotCity(self):
         self.buttonListMain[4].click()
         time.sleep(2)
-        self.buttonListCity = getElement.get_buttonList(self.driver)
+        buttonListCity = getElement.get_buttonList(self.driver)
 
-        getElement.buttonClick(u'上海', self.buttonListCity)
+        getElement.buttonClick(u'上海', buttonListCity)
         time.sleep(2)
-        self.buttonListMain = getElement.get_buttonList(self.driver)
+        buttonListMain = getElement.get_buttonList(self.driver)
 
-        self.assertEqual(self.buttonListMain[4].text, u'上海', 'The city is not right')
+        self.assertEqual(buttonListMain[4].text, u'上海', 'The city is not right')
 
     #Test the date button
     def testcase_4_selectDate(self):
@@ -58,13 +58,48 @@ class HotelMainTest(unittest.TestCase):
     def testcase_5_hotCitySuggestion(self):
         self.buttonListMain[4].click()
         time.sleep(2)
-        self.searchArea = getElement.get_searchCityArea(self.driver)
-        self.searchArea.send_keys('bei')
-        self.suggestionCityResutlList = getElement.get_buttonList(self.driver)
-        getElement.buttonClick(u'北戴河', self.suggestionCityResutlList)
+        searchArea = getElement.get_searchCityArea(self.driver)
+        searchArea.send_keys('bei')
+        suggestionCityResutlList = getElement.get_buttonList(self.driver)
+        getElement.buttonClick(u'北戴河', suggestionCityResutlList)
         time.sleep(2)
-        self.buttonListMain = getElement.get_buttonList(self.driver)
-        self.assertEqual(self.buttonListMain[4].text, u'北戴河', 'The city is wrong')
+        buttonListMain = getElement.get_buttonList(self.driver)
+        self.assertEqual(buttonListMain[4].text, u'北戴河', 'The city is wrong')
+
+    #check keyword button click
+    def testcase_5_keywordButtonClick(self):
+        self.buttonListMain[6].click()
+        time.sleep(1)
+        self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectKeywordActivity', 'The activity is wrong')
+
+    def testcase_6_keywordOptionsCheck(self):
+        self.buttonListMain[6].click()
+        time.sleep(2)
+        keywordActButtonList = getElement.get_buttonList(self.driver)
+        self.assertEqual(keywordActButtonList[-3].text, u'热门商圈', 'The landmark position is wrong')
+        self.assertEqual(keywordActButtonList[-2].text, u'机场车站', 'The station position is wrong')
+        self.assertEqual(keywordActButtonList[-1].text, u'快捷品牌', 'The brand position is wrong')
+        if len(keywordActButtonList) == 6:
+            self.assertEqual(keywordActButtonList[-4].text, u'搜索历史', 'The history position is wrong')
+
+    def testcase_7_chooseLandmarkCheck(self):
+        pass
+
+    def testcase_8_landmarkSuggestion(self):
+        pass
+
+    def testcase_9_chooseStationCheck(self):
+        pass
+
+    def testcase_10_stationSuggestion(self):
+        pass
+
+    def testcase_11_chooseBrandCheck(self):
+        pass
+
+    def tsetcase_12_brandSuggestion(self):
+        pass
+
 
 
 if __name__ == '__main__':
