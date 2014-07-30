@@ -11,7 +11,14 @@ class HotelMainTest(unittest.TestCase):
         desired_caps = {}
         desired_caps['platformName'] = 'Android'
         desired_caps['platforVersion'] = '4.2'
+
+        #xiaomi 3
         desired_caps['deviceName'] = '219ff832'
+
+        #xiaomi 2s
+        #desired_caps['deviceName'] = '4b8f91d6'
+
+        #kuxun hotel apk
         desired_caps['appPackage'] = 'com.kuxun.scliang.hotel'
         desired_caps['appActivity'] = 'com.kuxun.hotel.HotelMainActivity'
 
@@ -175,11 +182,11 @@ class HotelMainTest(unittest.TestCase):
         self.buttonListMain[8].click()
         time.sleep(2)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelListActivity', 'The hotlListAct is wrong')
+        time.sleep(1)
         textViewList = getElement.get_textViewList(self.driver)
-        cityCheck = cityName if cityName in textViewList[1].text else textViewList[1].text
+        cityCheck = cityName if cityName in textViewList[2].text else textViewList[2].text
         self.assertEqual(cityCheck, cityName, 'The city is not pass by the mainAct')
 
-        pass
 if __name__ == '__main__':
     unittest.main()
 
