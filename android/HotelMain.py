@@ -5,9 +5,11 @@ import unittest
 from appium import webdriver
 import getElement
 
-class HotelMainTest(unittest.TestCase):
+
+class HotelMainTestCase(unittest.TestCase):
 
     def setUp(self):
+
         desired_caps = {}
         desired_caps['platformName'] = 'Android'
         desired_caps['platforVersion'] = '4.2'
@@ -23,7 +25,7 @@ class HotelMainTest(unittest.TestCase):
         desired_caps['appActivity'] = 'com.kuxun.hotel.HotelMainActivity'
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-        time.sleep(2)
+        time.sleep(5)
 
         self.buttonListMain = getElement.get_buttonList(self.driver)
         self.textViewListMain = getElement.get_textViewList(self.driver)
@@ -32,57 +34,59 @@ class HotelMainTest(unittest.TestCase):
         self.driver.quit()
 
     #Test the app startup normal
-    def testcase_1_startNormal(self):
+    def test_01_startNormal(self):
         self.assertEqual(self.textViewListMain[0].text, u'酷讯酒店', 'The app title is wrong')
 
+
     #Test the selectCity button
-    def testcase_2_chooseCity(self):
+    def test_02_chooseCity(self):
         self.buttonListMain[4].click()
-        time.sleep(2)
+        time.sleep(1)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectCityActivity', 'The activity name is wrong')
 
 
     #Test the hotCity click
-    def testcase_3_clickHotCity(self):
+    def test_03_clickHotCity(self):
         self.buttonListMain[4].click()
-        time.sleep(2)
+        time.sleep(1)
         buttonListCity = getElement.get_buttonList(self.driver)
 
         getElement.buttonClick(u'上海', buttonListCity)
-        time.sleep(2)
+        time.sleep(1)
         buttonListMain = getElement.get_buttonList(self.driver)
 
         self.assertEqual(buttonListMain[4].text, u'上海', 'The city is not right')
 
     #Test the date button
-    def testcase_4_selectDate(self):
+    def test_04_selectDate(self):
         self.buttonListMain[5].click()
-        time.sleep(2)
+        time.sleep(1)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectDateActivity', 'The activity is wrong')
+
 
     #Test the HotCity suggestion
     #Use spell becase the appium Not supported the chinese characters yet
-    def testcase_5_hotCitySuggestion(self):
+    def test_05_hotCitySuggestion(self):
         self.buttonListMain[4].click()
-        time.sleep(2)
+        time.sleep(1)
         searchArea = getElement.get_searchArea(self.driver)
         searchArea.send_keys('bei')
         suggestionCityResutlList = getElement.get_buttonList(self.driver)
         getElement.buttonClick(u'北戴河', suggestionCityResutlList)
-        time.sleep(2)
+        time.sleep(1)
         buttonListMain = getElement.get_buttonList(self.driver)
         self.assertEqual(buttonListMain[4].text, u'北戴河', 'The city is wrong')
 
     #check keyword button click
-    def testcase_5_keywordButtonClick(self):
+    def test_06_keywordButtonClick(self):
         self.buttonListMain[6].click()
         time.sleep(1)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectKeywordActivity', 'The activity is wrong')
 
     #check keywordAct UI
-    def testcase_6_keywordOptionsCheck(self):
+    def test_07_keywordOptionsCheck(self):
         self.buttonListMain[6].click()
-        time.sleep(2)
+        time.sleep(1)
         keywordActButtonList = getElement.get_buttonList(self.driver)
         self.assertEqual(keywordActButtonList[-3].text, u'热门商圈', 'The landmark position is wrong')
         self.assertEqual(keywordActButtonList[-2].text, u'机场车站', 'The station position is wrong')
@@ -91,9 +95,9 @@ class HotelMainTest(unittest.TestCase):
             self.assertEqual(keywordActButtonList[-4].text, u'搜索历史', 'The history position is wrong')
 
     #check keywordAct landmark
-    def testcase_7_chooseLandmarkCheck(self):
+    def test_08_chooseLandmarkCheck(self):
         self.buttonListMain[6].click()
-        time.sleep(2)
+        time.sleep(1)
         keywordActButtonList = getElement.get_buttonList(self.driver)
         keywordActButtonList[-3].click()
 
@@ -110,7 +114,7 @@ class HotelMainTest(unittest.TestCase):
 
     #check keywordAct landmark suggestion
     #Loss of function suggestion
-    def testcase_8_landmarkSuggestion(self):
+    def test_09_landmarkSuggestion(self):
         self.buttonListMain[6].click()
         time.sleep(1)
         keywordActButtonList = getElement.get_buttonList(self.driver)
@@ -121,9 +125,9 @@ class HotelMainTest(unittest.TestCase):
         pass
 
     #check keywordAct station
-    def testcase_9_chooseStationCheck(self):
+    def test_10_chooseStationCheck(self):
         self.buttonListMain[6].click()
-        time.sleep(2)
+        time.sleep(1)
         keywordActButtonList = getElement.get_buttonList(self.driver)
         keywordActButtonList[-2].click()
 
@@ -140,13 +144,13 @@ class HotelMainTest(unittest.TestCase):
 
     #check keywordAct station suggestion
     #Loss of function suggestion
-    def testcase_10_stationSuggestion(self):
+    def test_11_stationSuggestion(self):
         pass
 
     #check keywordAct brand
-    def testcase_11_chooseBrandCheck(self):
+    def test_12_chooseBrandCheck(self):
         self.buttonListMain[6].click()
-        time.sleep(2)
+        time.sleep(1)
         keywordActButtonList = getElement.get_buttonList(self.driver)
         keywordActButtonList[-1].click()
 
@@ -163,32 +167,52 @@ class HotelMainTest(unittest.TestCase):
 
     #check keywordAct brand suggestion
     #Loss of function suggestion
-    def testcase_12_brandSuggestion(self):
+    def test_13_brandSuggestion(self):
         pass
 
     #check price
-    def testcase_13_price(self):
+    def test_14_price(self):
         self.buttonListMain[7].click()
         time.sleep(1)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelPriceSliderActivity', 'The price Actitity is wrong')
 
     #The UI can not be clicked, will do it in next script
-    def testcase_14_priceChoose(self):
+    def test_15_priceChoose(self):
         pass
 
-    #Click search buton
-    def testcase_15_searchButtonClick(self):
-        cityName = self.buttonListMain[4].text
+    #Click gps buton
+    def test_16_gpsCitySearchHotel(self):
+
+        cityNameMain = self.buttonListMain[4].text
+        print 'cityNameMain,', cityNameMain
         self.buttonListMain[8].click()
-        time.sleep(2)
+        time.sleep(1)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelListActivity', 'The hotlListAct is wrong')
+        time.sleep(2)
+        textViewHotelList = getElement.get_textViewList(self.driver)
+        print textViewHotelList[4].text
+        cityNameHotelList = cityNameMain if cityNameMain in textViewHotelList[4].text else textViewHotelList[4].text
+        print cityNameHotelList
+        #self.assertEqual(cityNameHotelList, cityNameMain, 'The city is not pass by the mainAct')
+
+    #check choose city
+    def test_17_chooseCitySerarchHotel(self):
+        self.buttonListMain[4].click()
+        time.sleep(1)
+        buttonListCityAct = getElement.get_buttonList(self.driver)
+        getElement.buttonClick(u'上海', buttonListCityAct)
+        time.sleep(1)
+        buttonListMainAct = getElement.get_buttonList(self.driver)
+        cityNameMainAct = buttonListMainAct[4].text
+        self.buttonListMain[8].click()
         time.sleep(1)
         textViewList = getElement.get_textViewList(self.driver)
-        cityCheck = cityName if cityName in textViewList[2].text else textViewList[2].text
-        self.assertEqual(cityCheck, cityName, 'The city is not pass by the mainAct')
+        cityNameHotelList = cityNameMainAct if cityNameMainAct in textViewList[4].text else textViewList[4].text
+        self.assertEqual(cityNameHotelList, cityNameMainAct, 'The city is not pass by the mainAct')
 
 if __name__ == '__main__':
-    unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(HotelMainTestCase)
+    unittest.TextTestRunner(verbosity=2).run(suite)
 
 
 
