@@ -6,6 +6,7 @@ KuxunHotelAppTest
 2. 对UI和部分逻辑进行测试
 3. testcase使用编号进行区分
 4. 主要使用xpath的方式进行元素定位
+5. 运行该脚本需要Android version >= 4.2
 
 首页
 ----
