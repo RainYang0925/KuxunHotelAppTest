@@ -72,6 +72,7 @@ class HotelMainTest(unittest.TestCase):
         time.sleep(1)
         self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelSelectKeywordActivity', 'The activity is wrong')
 
+    #check keywordAct UI
     def testcase_6_keywordOptionsCheck(self):
         self.buttonListMain[6].click()
         time.sleep(2)
@@ -82,12 +83,29 @@ class HotelMainTest(unittest.TestCase):
         if len(keywordActButtonList) == 6:
             self.assertEqual(keywordActButtonList[-4].text, u'搜索历史', 'The history position is wrong')
 
+    #check keywordAct landmark
     def testcase_7_chooseLandmarkCheck(self):
-        pass
+        self.buttonListMain[6].click()
+        time.sleep(2)
+        keywordActButtonList = getElement.get_buttonList(self.driver)
+        keywordActButtonList[-3].click()
 
+        keywordActRelativeLayoutList = getElement.get_RelativeLayoutList(self.driver)
+        for i in range(len(keywordActRelativeLayoutList)):
+            try:
+                if u'后海商圈' == getElement.get_RelativeTextView(self.driver, i).text:
+                    keywordActRelativeLayoutList[i - 1].click()
+            except:
+                pass
+        time.sleep(1)
+        buttonListMainAct = getElement.get_buttonList(self.driver)
+        self.assertEqual(buttonListMainAct[6].text, u'后海商圈', 'The  landmark keyword is wrong')
+
+    #check keywordAct landmark suggestion
     def testcase_8_landmarkSuggestion(self):
         pass
 
+    #check keywordAct station
     def testcase_9_chooseStationCheck(self):
         self.buttonListMain[6].click()
         time.sleep(2)
@@ -103,14 +121,31 @@ class HotelMainTest(unittest.TestCase):
                 pass
         time.sleep(1)
         buttonListMainAct = getElement.get_buttonList(self.driver)
-        self.assertEqual(buttonListMainAct[6].text, u'北京西站', 'The keyword is wrong')
+        self.assertEqual(buttonListMainAct[6].text, u'北京西站', 'The station keyword is wrong')
 
+    #check keywordAct station suggestion
     def testcase_10_stationSuggestion(self):
         pass
 
+    #check keywordAct brand
     def testcase_11_chooseBrandCheck(self):
-        pass
+        self.buttonListMain[6].click()
+        time.sleep(2)
+        keywordActButtonList = getElement.get_buttonList(self.driver)
+        keywordActButtonList[-1].click()
 
+        keywordActRelativeLayoutList = getElement.get_RelativeLayoutList(self.driver)
+        for i in range(len(keywordActRelativeLayoutList)):
+            try:
+                if u'如家快捷' == getElement.get_RelativeTextView(self.driver, i).text:
+                    keywordActRelativeLayoutList[i - 1].click()
+            except:
+                pass
+        time.sleep(1)
+        buttonListMainAct = getElement.get_buttonList(self.driver)
+        self.assertEqual(buttonListMainAct[6].text, u'如家快捷', 'The  landmark keyword is wrong')
+
+    #check keywordAct brand suggestion
     def tsetcase_12_brandSuggestion(self):
         pass
 
