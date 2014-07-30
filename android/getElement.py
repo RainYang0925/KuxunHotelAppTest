@@ -13,7 +13,7 @@ def get_textView(driver):
 def get_buttonList(driver):
     return driver.find_elements_by_xpath(getelements['buttonView'])
 
-def get_searchCityArea(driver):
+def get_searchArea(driver):
     return driver.find_element_by_xpath(getelements['editText'])
 
 def get_RelativeLayoutList(driver):
