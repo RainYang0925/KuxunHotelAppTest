@@ -169,6 +169,17 @@ class HotelMainTest(unittest.TestCase):
     def testcase_14_priceChoose(self):
         pass
 
+    #Click search buton
+    def testcase_15_searchButtonClick(self):
+        cityName = self.buttonListMain[4].text
+        self.buttonListMain[8].click()
+        time.sleep(2)
+        self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelListActivity', 'The hotlListAct is wrong')
+        textViewList = getElement.get_textViewList(self.driver)
+        cityCheck = cityName if cityName in textViewList[1].text else textViewList[1].text
+        self.assertEqual(cityCheck, cityName, 'The city is not pass by the mainAct')
+
+        pass
 if __name__ == '__main__':
     unittest.main()
 
