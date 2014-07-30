@@ -29,10 +29,13 @@ KuxunHotelAppTest
 选择城市页面
 ----
 ###页面说明
-城市搜索由于框架问题，暂时不支持汉字，只能使用拼音这种方式
+城市搜索由于框架问题，暂时不支持汉字，只能使用拼音
 
 ### 脚本说明
 1. 搜索框使用send_keys发送关键字
+2. 预定义了几个会出现的关键字，后期会根据接口内容随机进行抽取测试
+3. 使用try catch 避免 //android.widget.RelativeLayout[0] 后面无 android.widget.TextView元素导致运行错误的情况
+
 
 
 
