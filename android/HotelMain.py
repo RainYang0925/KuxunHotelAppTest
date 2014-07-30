@@ -161,8 +161,13 @@ class HotelMainTest(unittest.TestCase):
 
     #check price
     def testcase_13_price(self):
-        pass
+        self.buttonListMain[7].click()
+        time.sleep(1)
+        self.assertEqual(self.driver.current_activity, 'com.kuxun.hotel.HotelPriceSliderActivity', 'The price Actitity is wrong')
 
+    #The UI can not be clicked, will do it in next script
+    def testcase_14_priceChoose(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
