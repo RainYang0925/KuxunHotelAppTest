@@ -58,7 +58,7 @@ class HotelMainTest(unittest.TestCase):
     def testcase_5_hotCitySuggestion(self):
         self.buttonListMain[4].click()
         time.sleep(2)
-        searchArea = getElement.get_searchCityArea(self.driver)
+        searchArea = getElement.get_searchArea(self.driver)
         searchArea.send_keys('bei')
         suggestionCityResutlList = getElement.get_buttonList(self.driver)
         getElement.buttonClick(u'北戴河', suggestionCityResutlList)
@@ -102,7 +102,15 @@ class HotelMainTest(unittest.TestCase):
         self.assertEqual(buttonListMainAct[6].text, u'后海商圈', 'The  landmark keyword is wrong')
 
     #check keywordAct landmark suggestion
+    #Loss of function suggestion
     def testcase_8_landmarkSuggestion(self):
+        self.buttonListMain[6].click()
+        time.sleep(1)
+        keywordActButtonList = getElement.get_buttonList(self.driver)
+
+        searchArea = getElement.get_searchArea(self.driver)
+        searchArea.send_keys('bei')
+
         pass
 
     #check keywordAct station
@@ -124,6 +132,7 @@ class HotelMainTest(unittest.TestCase):
         self.assertEqual(buttonListMainAct[6].text, u'北京西站', 'The station keyword is wrong')
 
     #check keywordAct station suggestion
+    #Loss of function suggestion
     def testcase_10_stationSuggestion(self):
         pass
 
@@ -146,9 +155,13 @@ class HotelMainTest(unittest.TestCase):
         self.assertEqual(buttonListMainAct[6].text, u'如家快捷', 'The  landmark keyword is wrong')
 
     #check keywordAct brand suggestion
-    def tsetcase_12_brandSuggestion(self):
+    #Loss of function suggestion
+    def testcase_12_brandSuggestion(self):
         pass
 
+    #check price
+    def testcase_13_price(self):
+        pass
 
 
 if __name__ == '__main__':
