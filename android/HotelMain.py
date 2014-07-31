@@ -4,25 +4,15 @@ import time
 import unittest
 from appium import webdriver
 import getElement
-
+import config
 
 class HotelMainTestCase(unittest.TestCase):
 
     def setUp(self):
 
         desired_caps = {}
-        desired_caps['platformName'] = 'Android'
-        desired_caps['platforVersion'] = '4.2'
 
-        #xiaomi 3
-        desired_caps['deviceName'] = '219ff832'
-
-        #xiaomi 2s
-        #desired_caps['deviceName'] = '4b8f91d6'
-
-        #kuxun hotel apk
-        desired_caps['appPackage'] = 'com.kuxun.scliang.hotel'
-        desired_caps['appActivity'] = 'com.kuxun.hotel.HotelMainActivity'
+        desired_caps.update(config.desired_caps())
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
         time.sleep(5)
