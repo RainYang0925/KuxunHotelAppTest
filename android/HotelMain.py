@@ -193,7 +193,7 @@ class HotelMainTestCase(unittest.TestCase):
         print textViewHotelList[4].text
         cityNameHotelList = cityNameMain if cityNameMain in textViewHotelList[4].text else textViewHotelList[4].text
         print cityNameHotelList
-        #self.assertEqual(cityNameHotelList, cityNameMain, 'The city is not pass by the mainAct')
+        self.assertEqual(cityNameHotelList, cityNameMain, 'The city is not pass by the mainAct')
 
     #check choose city
     def test_17_chooseCitySerarchHotel(self):
@@ -204,10 +204,12 @@ class HotelMainTestCase(unittest.TestCase):
         time.sleep(1)
         buttonListMainAct = getElement.get_buttonList(self.driver)
         cityNameMainAct = buttonListMainAct[4].text
+        print cityNameMainAct
         self.buttonListMain[8].click()
-        time.sleep(1)
+        time.sleep(2)
         textViewList = getElement.get_textViewList(self.driver)
         cityNameHotelList = cityNameMainAct if cityNameMainAct in textViewList[4].text else textViewList[4].text
+        print cityNameHotelList
         self.assertEqual(cityNameHotelList, cityNameMainAct, 'The city is not pass by the mainAct')
 
 if __name__ == '__main__':
