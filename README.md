@@ -20,6 +20,7 @@ KuxunHotelAppTest
 4. 由于关键字suggestion功能缺失，该处测试脚本未完成
 5. 价格筛选视图暂时没有代码可以解决
 6. 入住离店日期暂时无法测试，无法获得日期选择页面的UI
+7. 脚本运行时间为320秒左右，但有三个用例由于功能缺失没有编写。预计脚本执行一次所用的时间要在450秒左右。
 
 ### 脚本说明
 1. config.py 存放简化xpath的字典 dic = {'简化的xpath':'xpath（//android.widget.TextView）'}
@@ -47,9 +48,3 @@ KuxunHotelAppTest
 1. 城市团购酒店的textView index 为 2??todo
 2. textView[1].click 可以进入团购页面
 3. 需要跟研发确认 HotelListActivity 前三个textView的层级关系
-
-
-
-
-
-
