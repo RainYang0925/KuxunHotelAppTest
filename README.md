@@ -11,6 +11,12 @@ KuxunHotelAppTest
 7. 使用test suite 让用例逐条执行
 8. 为用例添加编号是为了让用例按照顺序执行，不然unittest 会按照字母排列顺序进行执行
 
+HTMLTestRunner
+---
+1. [下载HTMLTestRunner.py]( http://tungwaiyip.info/software/HTMLTestRunner.html)
+2. 导入该文件到python的lib文件夹下。
+3. mac的地址是： /Library/Python/2.7/site-packages
+
 首页
 ----
 ### 页面说明
