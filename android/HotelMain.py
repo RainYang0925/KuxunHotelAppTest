@@ -2,7 +2,6 @@
 
 import time
 import unittest
-import HTMLTestRunner
 from appium import webdriver
 import getElement
 import config
@@ -206,17 +205,8 @@ class HotelMainTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(HotelMainTestCase)
-    #unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.TextTestRunner(verbosity=2).run(suite)
 
-    filename = '../Report/HotelMainTestCase.html'
-    fp = file(filename, 'wb')
-
-    runner = HTMLTestRunner.HTMLTestRunner(
-                stream=fp,
-                title='HotelMainTestCase Test Result',
-                description='Test Result.'
-                )
-    runner.run(suite)
 
 
 
